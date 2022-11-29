@@ -8,12 +8,12 @@ end
 # to this method
 
 class Array
-  def initialize(*args)
-    @fake_array = args.flatten
-  end
-
-  def my_each(&block)
-    @fake_array.my_each(&block)
+  def my_each
+    index = 0
+    while index < length
+      yield(self[index])
+      index += 1
+    end
     self
   end
 end
