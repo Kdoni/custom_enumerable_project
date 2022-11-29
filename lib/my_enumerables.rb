@@ -20,6 +20,31 @@ module Enumerable
     end
     true
   end
+
+  def my_any?
+    index = 0
+    while index < length
+      if yield(self[index]) == true
+        return true
+      else
+        index += 1
+      end
+    end
+    false
+  end
+
+  def my_count
+    index = 0
+    counter = 0
+    if block_given?
+      while index < length
+        counter += 1 if yield(self[index]) == true
+        index += 1
+      end
+      return counter
+    end
+    length
+  end
 end
 
 # You will first have to define my_each
