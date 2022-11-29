@@ -45,6 +45,46 @@ module Enumerable
     end
     length
   end
+
+  def my_inject(value = 0)
+    index = 0
+    accumulator = value
+    while index < length
+      accumulator = yield(accumulator, self[index])
+      index += 1
+    end
+    accumulator
+  end
+
+  def my_map
+    index = 0
+    result = []
+    while index < length
+      result << yield(self[index])
+      index += 1
+    end
+    result
+  end
+
+  def my_none?
+    index = 0
+    while index < length
+      return false if yield(self[index]) == true
+
+      index += 1
+    end
+    true
+  end
+
+  def my_select
+    index = 0
+    result = []
+    while index < length
+      result << self[index] if yield(self[index]) == true
+      index += 1
+    end
+    result
+  end
 end
 
 # You will first have to define my_each
